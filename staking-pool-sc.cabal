@@ -100,5 +100,5 @@ test-suite test
                     , text
                     , prettyprinter
                     , strict-containers
-                    , P2PStakingPool
+                    ,CardanoStakingPool
                     , foldl

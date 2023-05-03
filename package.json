@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "bs-aeson": "^4.6.0"
+  }
+}

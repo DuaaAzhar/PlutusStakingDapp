@@ -1,0 +1,139 @@
+    [1mWarning[0m: This program is [1mexperimental[0m and its interface is subject to change.
+
+[1;91mName[0m
+
+    [1;94mnix[0m - a tool for reproducible and declarative configuration management
+
+[1;91mSynopsis[0m
+
+    [1;94mnix[0m [[3moption[0m...] [3msubcommand[0m
+
+    where [3msubcommand[0m is one of the following:
+
+    [1mMain commands:[0m
+
+[93m    · [0m[1;94mnix build[0m - build a derivation or fetch a store path 
+[93m    · [0m[1;94mnix develop[0m - run a bash shell that provides the build environment of a derivation 
+[93m    · [0m[1;94mnix flake[0m - manage Nix flakes 
+[93m    · [0m[1;94mnix help[0m - show help about [1;94mnix[0m or a particular subcommand 
+[93m    · [0m[1;94mnix profile[0m - manage Nix profiles 
+[93m    · [0m[1;94mnix repl[0m - start an interactive environment for evaluating Nix expressions 
+[93m    · [0m[1;94mnix run[0m - run a Nix application 
+[93m    · [0m[1;94mnix search[0m - search for packages 
+[93m    · [0m[1;94mnix shell[0m - run a shell in which the specified packages are available 
+
+    [1mInfrequently used commands:[0m
+
+[93m    · [0m[1;94mnix bundle[0m - bundle an application so that it works outside of the Nix store 
+[93m    · [0m[1;94mnix copy[0m - copy paths between Nix stores 
+[93m    · [0m[1;94mnix edit[0m - open the Nix expression of a Nix package in $EDITOR 
+[93m    · [0m[1;94mnix eval[0m - evaluate a Nix expression 
+[93m    · [0m[1;94mnix fmt[0m - reformat your code in the standard style 
+[93m    · [0m[1;94mnix log[0m - show the build log of the specified packages or paths, if available 
+[93m    · [0m[1;94mnix path-info[0m - query information about store paths 
+[93m    · [0m[1;94mnix registry[0m - manage the flake registry 
+[93m    · [0m[1;94mnix why-depends[0m - show why a package has another package in its closure 
+
+    [1mUtility/scripting commands:[0m
+
+[93m    · [0m[1;94mnix daemon[0m - daemon to perform store operations on behalf of non-root clients 
+[93m    · [0m[1;94mnix describe-stores[0m - show registered store types and their available options 
+[93m    · [0m[1;94mnix hash[0m - compute and convert cryptographic hashes 
+[93m    · [0m[1;94mnix key[0m - generate and convert Nix signing keys 
+[93m    · [0m[1;94mnix nar[0m - create or inspect NAR files 
+[93m    · [0m[1;94mnix print-dev-env[0m - print shell code that can be sourced by bash to reproduce the build environment of a
+      derivation 
+[93m    · [0m[1;94mnix realisation[0m - manipulate a Nix realisation 
+[93m    · [0m[1;94mnix show-config[0m - show the Nix configuration 
+[93m    · [0m[1;94mnix show-derivation[0m - show the contents of a store derivation 
+[93m    · [0m[1;94mnix store[0m - manipulate a Nix store 
+
+    [1mCommands for upgrading or troubleshooting your Nix installation:[0m
+
+[93m    · [0m[1;94mnix doctor[0m - check your system for potential problems and print a PASS or FAIL for each check 
+[93m    · [0m[1;94mnix upgrade-nix[0m - upgrade Nix to the stable version declared in Nixpkgs 
+
+[1;91mExamples[0m
+
+[93m    · [0mCreate a new flake:
+
+      [1;94m    | [0m[1m# nix flake new hello[0m
+      [1;94m    | [0m[1m# cd hello[0m
+
+[93m    · [0mBuild the flake in the current directory:
+
+      [1;94m    | [0m[1m# nix build[0m
+      [1;94m    | [0m[1m# ./result/bin/hello[0m
+      [1;94m    | [0m[1mHello, world![0m
+
+[93m    · [0mRun the flake in the current directory:
+
+      [1;94m    | [0m[1m# nix run[0m
+      [1;94m    | [0m[1mHello, world![0m
+
+[93m    · [0mStart a development shell for hacking on this flake:
+
+      [1;94m    | [0m[1m# nix develop[0m
+      [1;94m    | [0m[1m# unpackPhase[0m
+      [1;94m    | [0m[1m# cd hello-*[0m
+      [1;94m    | [0m[1m# configurePhase[0m
+      [1;94m    | [0m[1m# buildPhase[0m
+      [1;94m    | [0m[1m# ./hello[0m
+      [1;94m    | [0m[1mHello, world![0m
+      [1;94m    | [0m[1m# installPhase[0m
+      [1;94m    | [0m[1m# ../outputs/out/bin/hello[0m
+      [1;94m    | [0m[1mHello, world![0m
+
+[1;91mDescription[0m
+
+    Nix is a tool for building software, configurations and other artifacts in a reproducible and declarative way.
+    For more information, see the [1;93mNix homepage[0m [4;32mhttps://nixos.org/[0m or the [1;93mNix[0m[1;93m manual[0m [0m
+    [4;32mhttps://nixos.org/manual/nix/stable/[0m.
+
+[1;91mInstallables[0m
+
+    Many [1;94mnix[0m subcommands operate on one or more [3minstallables[0m. These are command line arguments that represent
+    something that can be built in the Nix store. Here are the recognised types of installables:
+
+[93m    · [0m[1mFlake output attributes[0m: [1;94mnixpkgs#hello[0m
+
+      These have the form [3mflakeref[0m[[1;94m#[0m[3mattrpath[0m], where [3mflakeref[0m is a flake reference and [3mattrpath[0m is an optional
+      attribute path. For more information on flakes, see [1;93mthe [0m[1;93mnix flake[0m[1;93m manual[0m[1;93m page[0m [4;32m./nix3-flake.md[0m. Flake
+      references are most commonly a flake identifier in the flake registry (e.g. [1;94mnixpkgs[0m), or a raw path (e.g. [0m
+      [1;94m/path/to/my-flake[0m or [1;94m.[0m or [1;94m../foo[0m), or a full URL (e.g. [1;94mgithub:nixos/nixpkgs[0m or [1;94mpath:.[0m)
+
+      When the flake reference is a raw path (a path without any URL scheme), it is interpreted as a [1;94mpath:[0m or [0m
+      [1;94mgit+file:[0m url in the following way:
+
+      [93m    · [0mIf the path is within a Git repository, then the url will be of the form [0m
+            [1;94mgit+file://[GIT_REPO_ROOT]?dir=[RELATIVE_FLAKE_DIR_PATH][0m where [1;94mGIT_REPO_ROOT[0m is the path to the root of
+            the git repository, and [1;94mRELATIVE_FLAKE_DIR_PATH[0m is the path (relative to the directory root) of the
+            closest parent of the given path that contains a [1;94mflake.nix[0m within the git repository. If no such
+            directory exists, then Nix will error-out. 
+
+      Note that the search will only include files indexed by git. In particular, files which are matched by [0m
+      [1;94m.gitignore[0m or have never been [1;94mgit add[0m-ed will not be available in the flake. If this is undesirable, specify [0m
+      [1;94mpath:<directory>[0m explicitly;
+
+      For example, if [1;94m/foo/bar[0m is a git repository with the following structure: [1;94m . └── baz ├── blah[0m
+      [1;94m│  └── file.txt └── flake.nix [0m
+
+      Then [1;94m/foo/bar/baz/blah[0m will resolve to [1;94mgit+file:///foo/bar?dir=baz[0m
+
+      [93m    · [0mIf the supplied path is not a git repository, then the url will have the form [1;94mpath:FLAKE_DIR_PATH[0m where [0m
+            [1;94mFLAKE_DIR_PATH[0m is the closest parent of the supplied path that contains a [1;94mflake.nix[0m file (within the
+            same file-system). If no such directory exists, then Nix will error-out. 
+
+      For example, if [1;94m/foo/bar/flake.nix[0m exists, then [1;94m/foo/bar/baz/[0m will resolve to [1;94mpath:/foo/bar[0m
+
+      If [3mattrpath[0m is omitted, Nix tries some default values; for most subcommands, the default is [1;94mpackages.[0m[3msystem[0m[1;94m.default[0m
+      (e.g. [1;94mpackages.x86_64-linux.default[0m), but some subcommands have other defaults. If [3mattrpath[0m [3mis[0m specified, [0m
+      [3mattrpath[0m is interpreted as relative to one or more prefixes; for most subcommands, these are [1;94mpackages.[0m[3msystem[0m, [0m
+      [1;94mlegacyPackages.*system*[0m and the empty prefix. Thus, on [1;94mx86_64-linux[0m [1;94mnix build nixpkgs#hello[0m will try to build
+      the attributes [1;94mpackages.x86_64-linux.hello[0m, [1;94mlegacyPackages.x86_64-linux.hello[0m and [1;94mhello[0m.
+
+[93m    · [0m[1mStore paths[0m: [1;94m/nix/store/v5sv61sszx301i0x6xysaqzla09nksnd-hello-2.10[0m
+
+      These are paths inside the Nix store, or symlinks that resolve to a path in the Nix store.
+
+[93m    · [0m[1mStore derivations[0
